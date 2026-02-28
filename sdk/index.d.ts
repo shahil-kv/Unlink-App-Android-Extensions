@@ -12,7 +12,7 @@ export interface ScreenTimeStats {
 export interface VisualsAPI {
     /**
      * Sets the grayscale level of the screen (Android only).
-     * @param level - From 0.0 (Coloured) to 1.0 (Black & White)
+     * @param level - From 0.0 (Coloured) to 1.0 (Black & Whites)
      */
     setGrayscale: (level: number) => Promise<void>;
 
