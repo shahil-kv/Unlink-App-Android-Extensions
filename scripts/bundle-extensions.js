@@ -23,7 +23,6 @@ async function bundleExtensions() {
 
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     
-    // We MUST use the ID from manifest, as that's what the app uses to look up the component
     const extensionId = manifest.id;
     if (!extensionId) {
       console.warn(`⚠️ Skipping ${folder}: Missing 'id' in extension.json`);
@@ -46,9 +45,8 @@ async function bundleExtensions() {
         bundle: true,
         outfile: outfile,
         format: 'iife',
-        // Standardize: Extension_[id_with_underscores]
         globalName: `Extension_${extensionId.replace(/-/g, '_')}`,
-        minify: true,
+        minify: false, // Disabled for debugging
         target: ['es2015'], 
         external: ['react', 'react-native'], 
         loader: {
@@ -56,7 +54,7 @@ async function bundleExtensions() {
           '.ts': 'ts',
         },
       });
-      console.log(`✅ Bundled: ${manifest.title} -> ${folder}.bundle.js (as Extension_${extensionId.replace(/-/g, '_')})`);
+      console.log(`✅ Bundled: ${manifest.title} -> ${folder}.bundle.js`);
     } catch (err) {
       console.error(`❌ Failed to bundle ${folder}:`, err);
     }
