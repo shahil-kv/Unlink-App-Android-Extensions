@@ -35,4 +35,4 @@ jobs:
           echo "🚀 Publishing extensions to Unlink Marketplace..."
           # Here we would upload the 'dist' folder to a CDN/S3 bucket
           # For now, we simulate success
-          echo "✅ Done!"
+          echo "✅ Doneee!"
