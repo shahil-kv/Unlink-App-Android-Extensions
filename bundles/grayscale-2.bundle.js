@@ -1,1 +1,128 @@
-var Extension_intelligent_focus=(()=>{var h=Object.create;var u=Object.defineProperty;var N=Object.getOwnPropertyDescriptor;var z=Object.getOwnPropertyNames;var T=Object.getPrototypeOf,V=Object.prototype.hasOwnProperty;var x=(e=>typeof require!="undefined"?require:typeof Proxy!="undefined"?new Proxy(e,{get:(s,a)=>(typeof require!="undefined"?require:s)[a]}):e)(function(e){if(typeof require!="undefined")return require.apply(this,arguments);throw Error('Dynamic require of "'+e+'" is not supported')});var P=(e,s)=>()=>(s||e((s={exports:{}}).exports,s),s.exports),k=(e,s)=>{for(var a in s)u(e,a,{get:s[a],enumerable:!0})},w=(e,s,a,r)=>{if(s&&typeof s=="object"||typeof s=="function")for(let l of z(s))!V.call(e,l)&&l!==a&&u(e,l,{get:()=>s[l],enumerable:!(r=N(s,l))||r.enumerable});return e};var y=(e,s,a)=>(a=e!=null?h(T(e)):{},w(s||!e||!e.__esModule?u(a,"default",{value:e,enumerable:!0}):a,e)),v=e=>w(u({},"__esModule",{value:!0}),e);var m=(e,s,a)=>new Promise((r,l)=>{var c=o=>{try{n(a.next(o))}catch(b){l(b)}},d=o=>{try{n(a.throw(o))}catch(b){l(b)}},n=o=>o.done?r(o.value):Promise.resolve(o.value).then(c,d);n((a=a.apply(e,s)).next())});var g=P((C,p)=>{var M=typeof globalThis!="undefined"?globalThis:typeof global!="undefined"?global:typeof window!="undefined"?window:{};p.exports=M.ScreenBreak});var A={};k(A,{IntelligentFocusMode:()=>S});var t=y(x("react")),i=x("react-native"),f=y(g());var S=()=>{let[e,s]=(0,t.useState)(!1),[a,r]=(0,t.useState)(!1),[l,c]=(0,t.useState)(!1),d=n=>m(void 0,null,function*(){n&&!a?i.Alert.alert("Display Permissions","This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",[{text:"Cancel",style:"cancel",onPress:()=>s(!1)},{text:"Enable",onPress:()=>m(void 0,null,function*(){r(!0),s(!0),c(!1),yield f.ScreenBreak.visuals.setGrayscale(1)})}]):(s(n),c(!n),yield f.ScreenBreak.visuals.setGrayscale(n?1:0))});return(0,t.useEffect)(()=>{let n=f.ScreenBreak.onUpdate(o=>m(void 0,null,function*(){o.todayTotalMinutes>=120&&!e&&a&&!l&&(s(!0),yield f.ScreenBreak.visuals.setGrayscale(1),i.Alert.alert("Daily Limit Reached","Intelligent Focus has been enabled to help you stay focused."))}));return()=>n()},[e,a,l]),t.default.createElement(i.View,{className:"p-5 bg-zinc-900 rounded-3xl border border-zinc-800"},t.default.createElement(i.View,{className:"flex-row justify-between items-start mb-4"},t.default.createElement(i.View,{className:"flex-1"},t.default.createElement(i.View,{className:"flex-row items-center mb-1"},t.default.createElement(i.Text,{className:"text-white font-bold text-xl tracking-tight"},"Intelligent Focus"),t.default.createElement(i.View,{className:"ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700"},t.default.createElement(i.Text,{className:"text-[10px] text-zinc-400 font-bold uppercase"},"PRO"))),t.default.createElement(i.Text,{className:"text-zinc-500 text-sm"},"Automatically activates grayscale mode after 120 minutes of daily usage.")),t.default.createElement(i.Switch,{value:e,onValueChange:d,trackColor:{false:"#27272a",true:"#ffffff"},thumbColor:e?"#000000":"#71717a"})),t.default.createElement(i.View,{className:"flex-row items-center justify-between border-t border-zinc-800 pt-3"},t.default.createElement(i.View,{className:"flex-row items-center"},t.default.createElement(i.View,{className:`w-2 h-2 rounded-full mr-2 ${e?"bg-white":"bg-zinc-700"}`}),t.default.createElement(i.Text,{className:"text-zinc-600 text-[10px] uppercase font-bold tracking-widest"},e?"Filter Active":"Monitoring Usage")),a&&t.default.createElement(i.Text,{className:"text-zinc-500 text-[10px]"},"Permission Active")))};return v(A);})();
+var Extension_intelligent_focus = (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+  }) : x)(function(x) {
+    if (typeof require !== "undefined")
+      return require.apply(this, arguments);
+    throw Error('Dynamic require of "' + x + '" is not supported');
+  });
+  var __commonJS = (cb, mod) => function __require2() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // sdk/index.js
+  var require_sdk = __commonJS({
+    "sdk/index.js"(exports, module) {
+      var universalGlobal = typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : {};
+      module.exports = universalGlobal.ScreenBreak;
+    }
+  });
+
+  // extensions/grayscale-2/Grayscale2.tsx
+  var Grayscale2_exports = {};
+  __export(Grayscale2_exports, {
+    IntelligentFocusMode: () => IntelligentFocusMode
+  });
+  var import_react = __toESM(__require("react"));
+  var import_react_native = __require("react-native");
+  var import_sdk = __toESM(require_sdk());
+  var IntelligentFocusMode = () => {
+    const [isEnabled, setIsEnabled] = (0, import_react.useState)(false);
+    const [hasPermission, setHasPermission] = (0, import_react.useState)(false);
+    const [wasManuallyDisabled, setWasManuallyDisabled] = (0, import_react.useState)(false);
+    const toggleFocusMode = (value) => __async(void 0, null, function* () {
+      if (value && !hasPermission) {
+        import_react_native.Alert.alert(
+          "Display Permissions",
+          "This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",
+          [
+            { text: "Cancel", style: "cancel", onPress: () => setIsEnabled(false) },
+            {
+              text: "Enable",
+              onPress: () => __async(void 0, null, function* () {
+                setHasPermission(true);
+                setIsEnabled(true);
+                setWasManuallyDisabled(false);
+                yield import_sdk.ScreenBreak.visuals.setGrayscale(1);
+              })
+            }
+          ]
+        );
+      } else {
+        setIsEnabled(value);
+        if (!value)
+          setWasManuallyDisabled(true);
+        else
+          setWasManuallyDisabled(false);
+        yield import_sdk.ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
+      }
+    });
+    (0, import_react.useEffect)(() => {
+      const unsubscribe = import_sdk.ScreenBreak.onUpdate((stats) => __async(void 0, null, function* () {
+        if (stats.todayTotalMinutes >= 120 && !isEnabled && hasPermission && !wasManuallyDisabled) {
+          setIsEnabled(true);
+          yield import_sdk.ScreenBreak.visuals.setGrayscale(1);
+          import_react_native.Alert.alert("Daily Limit Reached", "Intelligent Focus has been enabled to help you stay focused.");
+        }
+      }));
+      return () => unsubscribe();
+    }, [isEnabled, hasPermission, wasManuallyDisabled]);
+    return /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "p-5 bg-zinc-900 rounded-3xl border border-zinc-800" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row justify-between items-start mb-4" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-1" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center mb-1" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-white font-bold text-xl tracking-tight" }, "Intelligent Focus"), /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-[10px] text-zinc-400 font-bold uppercase" }, "PRO"))), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-500 text-sm" }, "Automatically activates grayscale mode after 120 minutes of daily usage.")), /* @__PURE__ */ import_react.default.createElement(
+      import_react_native.Switch,
+      {
+        value: isEnabled,
+        onValueChange: toggleFocusMode,
+        trackColor: { false: "#27272a", true: "#ffffff" },
+        thumbColor: isEnabled ? "#000000" : "#71717a"
+      }
+    )), /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center justify-between border-t border-zinc-800 pt-3" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: `w-2 h-2 rounded-full mr-2 ${isEnabled ? "bg-white" : "bg-zinc-700"}` }), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-600 text-[10px] uppercase font-bold tracking-widest" }, isEnabled ? "Filter Active" : "Monitoring Usage")), hasPermission && /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-500 text-[10px]" }, "Permission Active")));
+  };
+  return __toCommonJS(Grayscale2_exports);
+})();
