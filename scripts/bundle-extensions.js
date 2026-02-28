@@ -40,8 +40,9 @@ async function bundleExtensions() {
         format: 'iife',
         globalName: `Extension_${folder.replace(/-/g, '_')}`,
         minify: true,
-        // React and RN are provided by the App. 
-        // We bundle our SDK shim so it resolves correctly to the host's global.ScreenBreak
+        // Using es2015 to ensure async/await are transpiled to generators/promises.
+        // This fixes compatibility issues with 'new Function' in some React Native environments.
+        target: ['es2015'], 
         external: ['react', 'react-native'], 
         loader: {
           '.tsx': 'tsx',
