@@ -22,6 +22,14 @@ async function bundleExtensions() {
     if (!fs.existsSync(manifestPath)) continue;
 
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    
+    // We MUST use the ID from manifest, as that's what the app uses to look up the component
+    const extensionId = manifest.id;
+    if (!extensionId) {
+      console.warn(`⚠️ Skipping ${folder}: Missing 'id' in extension.json`);
+      continue;
+    }
+
     const entryFile = fs.readdirSync(extensionPath).find(f => f.endsWith('.tsx') || f.endsWith('.ts'));
 
     if (!entryFile) {
@@ -38,10 +46,9 @@ async function bundleExtensions() {
         bundle: true,
         outfile: outfile,
         format: 'iife',
-        globalName: `Extension_${folder.replace(/-/g, '_')}`,
+        // Standardize: Extension_[id_with_underscores]
+        globalName: `Extension_${extensionId.replace(/-/g, '_')}`,
         minify: true,
-        // Using es2015 to ensure async/await are transpiled to generators/promises.
-        // This fixes compatibility issues with 'new Function' in some React Native environments.
         target: ['es2015'], 
         external: ['react', 'react-native'], 
         loader: {
@@ -49,7 +56,7 @@ async function bundleExtensions() {
           '.ts': 'ts',
         },
       });
-      console.log(`✅ Bundled: ${manifest.title} -> ${folder}.bundle.js`);
+      console.log(`✅ Bundled: ${manifest.title} -> ${folder}.bundle.js (as Extension_${extensionId.replace(/-/g, '_')})`);
     } catch (err) {
       console.error(`❌ Failed to bundle ${folder}:`, err);
     }
