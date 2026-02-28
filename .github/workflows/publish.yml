@@ -7,10 +7,13 @@ on:
     paths:
       - 'extensions/**'
       - 'package.json'
+      - 'scripts/**'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,13 +29,14 @@ jobs:
 
       - name: Build Marketplace Registry
         run: |
-          # This script gathers all manifests and prepares them for the App
-          # In a full Re.Pack setup, this would also run webpack for each extension
           node scripts/build-registry.js
 
-      - name: Deploy to Marketplace (Mock)
-        run: |
-          echo "🚀 Publishing extensions to Unlink Marketplace..."
-          # Here we would upload the 'dist' folder to a CDN/S3 bucket
-          # For now, we simulate success
-          echo "✅ Doneee!"
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          keep_files: true
+          # We only want to publish the marketplace.json and potentially bundles
+          # destination_dir: ./
