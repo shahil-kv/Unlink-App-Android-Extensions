@@ -12,6 +12,7 @@ const globalPlugin = {
   setup(build) {
     build.onResolve({ filter: /^react$/ }, args => ({ path: args.path, namespace: 'global-react' }));
     build.onResolve({ filter: /^react-native$/ }, args => ({ path: args.path, namespace: 'global-rn' }));
+    build.onResolve({ filter: /sdk$/ }, args => ({ path: args.path, namespace: 'global-sdk' }));
     
     build.onLoad({ filter: /.*/, namespace: 'global-react' }, () => ({
       contents: `
@@ -41,6 +42,13 @@ const globalPlugin = {
         export const Image = RN.Image;
         export const ActivityIndicator = RN.ActivityIndicator;
         export default RN;
+      `,
+      loader: 'js'
+    }));
+    build.onLoad({ filter: /.*/, namespace: 'global-sdk' }, () => ({
+      contents: `
+        const universalGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof global !== 'undefined' ? global : typeof window !== 'undefined' ? window : {};
+        export const ScreenBreak = universalGlobal.ScreenBreak;
       `,
       loader: 'js'
     }));
