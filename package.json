@@ -1,0 +1,16 @@
+{
+  "name": "unlink-extensions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "unlink": "node packages/cli/index.js",
+    "dev": "npm run unlink -- dev",
+    "init": "npm run unlink -- init"
+  },
+  "devDependencies": {
+    "@types/react": "~19.1.10",
+    "@types/react-native": "0.73.0",
+    "react-native": "^0.84.1",
+    "typescript": "^5.0.0"
+  }
+}
