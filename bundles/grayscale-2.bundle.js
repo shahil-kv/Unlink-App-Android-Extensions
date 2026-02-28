@@ -75,7 +75,9 @@ var Extension_intelligent_focus = (() => {
     const [hasPermission, setHasPermission] = useState(false);
     const [wasManuallyDisabled, setWasManuallyDisabled] = useState(false);
     const toggleFocusMode = (value) => __async(void 0, null, function* () {
-      if (value && !hasPermission) {
+      const isActuallyEnabled = yield ScreenBreak.visuals.hasAccessibilityPermission();
+      if (value && !isActuallyEnabled) {
+        setHasPermission(false);
         Alert.alert(
           "Accessibility Permission Required",
           "To filter all apps, ScreenBreak needs Accessibility permission. We only use this to draw a gray filter over your screen without tracking what you type.",
