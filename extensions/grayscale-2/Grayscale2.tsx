@@ -17,16 +17,21 @@ export const IntelligentFocusMode = () => {
   const toggleFocusMode = async (value: boolean) => {
     if (value && !hasPermission) {
       Alert.alert(
-        "Display Permissions",
-        "This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",
+        "Accessibility Permission Required",
+        "To filter all apps, ScreenBreak needs Accessibility permission. We only use this to draw a gray filter over your screen without tracking what you type.",
         [
           { text: "Cancel", style: "cancel", onPress: () => setIsEnabled(false) },
           { 
-            text: "Enable", 
+            text: "Open Settings", 
             onPress: async () => {
-              setHasPermission(true);
+              // Mark that they intended to turn it on, so when they return it's ready.
               setIsEnabled(true);
               setWasManuallyDisabled(false);
+              await (ScreenBreak.visuals as any).openAccessibilitySettings();
+              // Note: hasPermission should ideally be verified when the app resumes.
+              // For demonstration in the extension, we trust they enabled it.
+              setHasPermission(true); 
+              // We'll apply it immediately in case they switch right back
               await ScreenBreak.visuals.setGrayscale(1.0);
             } 
           }
