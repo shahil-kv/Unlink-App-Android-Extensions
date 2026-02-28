@@ -8,6 +8,7 @@ on:
       - 'extensions/**'
       - 'package.json'
       - 'scripts/**'
+      - '.github/workflows/**'
 
 jobs:
   publish:
@@ -38,5 +39,3 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           keep_files: true
-          # We only want to publish the marketplace.json and potentially bundles
-          # destination_dir: ./
