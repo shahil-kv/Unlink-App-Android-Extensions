@@ -50,20 +50,6 @@ var Extension_intelligent_focus = (() => {
     });
   };
 
-  // global-react:react
-  var require_react = __commonJS({
-    "global-react:react"(exports, module) {
-      module.exports = globalThis.React;
-    }
-  });
-
-  // global-rn:react-native
-  var require_react_native = __commonJS({
-    "global-rn:react-native"(exports, module) {
-      module.exports = globalThis.ReactNative;
-    }
-  });
-
   // sdk/index.js
   var require_sdk = __commonJS({
     "sdk/index.js"(exports, module) {
@@ -77,16 +63,38 @@ var Extension_intelligent_focus = (() => {
   __export(Grayscale2_exports, {
     IntelligentFocusMode: () => IntelligentFocusMode
   });
-  var import_react = __toESM(require_react());
-  var import_react_native = __toESM(require_react_native());
+
+  // global-react:react
+  var R = globalThis.React;
+  var useState = R.useState;
+  var useEffect = R.useEffect;
+  var useMemo = R.useMemo;
+  var useCallback = R.useCallback;
+  var useRef = R.useRef;
+  var react_default = R;
+
+  // global-rn:react-native
+  var RN = globalThis.ReactNative;
+  var View = RN.View;
+  var Text = RN.Text;
+  var StyleSheet = RN.StyleSheet;
+  var TouchableOpacity = RN.TouchableOpacity;
+  var TouchableWithoutFeedback = RN.TouchableWithoutFeedback;
+  var ScrollView = RN.ScrollView;
+  var Switch = RN.Switch;
+  var Alert = RN.Alert;
+  var Image = RN.Image;
+  var ActivityIndicator = RN.ActivityIndicator;
+
+  // extensions/grayscale-2/Grayscale2.tsx
   var import_sdk = __toESM(require_sdk());
   var IntelligentFocusMode = () => {
-    const [isEnabled, setIsEnabled] = (0, import_react.useState)(false);
-    const [hasPermission, setHasPermission] = (0, import_react.useState)(false);
-    const [wasManuallyDisabled, setWasManuallyDisabled] = (0, import_react.useState)(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+    const [hasPermission, setHasPermission] = useState(false);
+    const [wasManuallyDisabled, setWasManuallyDisabled] = useState(false);
     const toggleFocusMode = (value) => __async(void 0, null, function* () {
       if (value && !hasPermission) {
-        import_react_native.Alert.alert(
+        Alert.alert(
           "Display Permissions",
           "This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",
           [
@@ -111,25 +119,25 @@ var Extension_intelligent_focus = (() => {
         yield import_sdk.ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
       }
     });
-    (0, import_react.useEffect)(() => {
+    useEffect(() => {
       const unsubscribe = import_sdk.ScreenBreak.onUpdate((stats) => __async(void 0, null, function* () {
         if (stats.todayTotalMinutes >= 120 && !isEnabled && hasPermission && !wasManuallyDisabled) {
           setIsEnabled(true);
           yield import_sdk.ScreenBreak.visuals.setGrayscale(1);
-          import_react_native.Alert.alert("Daily Limit Reached", "Intelligent Focus has been enabled to help you stay focused.");
+          Alert.alert("Daily Limit Reached", "Intelligent Focus has been enabled to help you stay focused.");
         }
       }));
       return () => unsubscribe();
     }, [isEnabled, hasPermission, wasManuallyDisabled]);
-    return /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "p-5 bg-zinc-900 rounded-3xl border border-zinc-800" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row justify-between items-start mb-4" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-1" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center mb-1" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-white font-bold text-xl tracking-tight" }, "Intelligent Focus"), /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-[10px] text-zinc-400 font-bold uppercase" }, "PRO"))), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-500 text-sm" }, "Automatically activates grayscale mode after 120 minutes of daily usage.")), /* @__PURE__ */ import_react.default.createElement(
-      import_react_native.Switch,
+    return /* @__PURE__ */ react_default.createElement(View, { className: "p-5 bg-zinc-900 rounded-3xl border border-zinc-800" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-start mb-4" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center mb-1" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-white font-bold text-xl tracking-tight" }, "Intelligent Focus"), /* @__PURE__ */ react_default.createElement(View, { className: "ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-[10px] text-zinc-400 font-bold uppercase" }, "PRO"))), /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-500 text-sm" }, "Automatically activates grayscale mode after 120 minutes of daily usage.")), /* @__PURE__ */ react_default.createElement(
+      Switch,
       {
         value: isEnabled,
         onValueChange: toggleFocusMode,
         trackColor: { false: "#27272a", true: "#ffffff" },
         thumbColor: isEnabled ? "#000000" : "#71717a"
       }
-    )), /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center justify-between border-t border-zinc-800 pt-3" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row items-center" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: `w-2 h-2 rounded-full mr-2 ${isEnabled ? "bg-white" : "bg-zinc-700"}` }), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-600 text-[10px] uppercase font-bold tracking-widest" }, isEnabled ? "Filter Active" : "Monitoring Usage")), hasPermission && /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-zinc-500 text-[10px]" }, "Permission Active")));
+    )), /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center justify-between border-t border-zinc-800 pt-3" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2 ${isEnabled ? "bg-white" : "bg-zinc-700"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-600 text-[10px] uppercase font-bold tracking-widest" }, isEnabled ? "Filter Active" : "Monitoring Usage")), hasPermission && /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-500 text-[10px]" }, "Permission Active")));
   };
   return __toCommonJS(Grayscale2_exports);
 })();

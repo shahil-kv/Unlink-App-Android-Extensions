@@ -50,20 +50,6 @@ var Extension_greyscale_fader = (() => {
     });
   };
 
-  // global-react:react
-  var require_react = __commonJS({
-    "global-react:react"(exports, module) {
-      module.exports = globalThis.React;
-    }
-  });
-
-  // global-rn:react-native
-  var require_react_native = __commonJS({
-    "global-rn:react-native"(exports, module) {
-      module.exports = globalThis.ReactNative;
-    }
-  });
-
   // sdk/index.js
   var require_sdk = __commonJS({
     "sdk/index.js"(exports, module) {
@@ -77,24 +63,46 @@ var Extension_greyscale_fader = (() => {
   __export(GreyscaleFader_exports, {
     GreyscaleFader: () => GreyscaleFader
   });
-  var import_react = __toESM(require_react());
-  var import_react_native = __toESM(require_react_native());
+
+  // global-react:react
+  var R = globalThis.React;
+  var useState = R.useState;
+  var useEffect = R.useEffect;
+  var useMemo = R.useMemo;
+  var useCallback = R.useCallback;
+  var useRef = R.useRef;
+  var react_default = R;
+
+  // global-rn:react-native
+  var RN = globalThis.ReactNative;
+  var View = RN.View;
+  var Text = RN.Text;
+  var StyleSheet = RN.StyleSheet;
+  var TouchableOpacity = RN.TouchableOpacity;
+  var TouchableWithoutFeedback = RN.TouchableWithoutFeedback;
+  var ScrollView = RN.ScrollView;
+  var Switch = RN.Switch;
+  var Alert = RN.Alert;
+  var Image = RN.Image;
+  var ActivityIndicator = RN.ActivityIndicator;
+
+  // extensions/greyscale-fader/GreyscaleFader.tsx
   var import_sdk = __toESM(require_sdk());
   var GreyscaleFader = () => {
-    const [enabled, setEnabled] = import_react.default.useState(false);
+    const [enabled, setEnabled] = react_default.useState(false);
     const toggleGreyscale = (value) => __async(void 0, null, function* () {
       setEnabled(value);
       yield import_sdk.ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
     });
-    return /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "p-4 bg-gray-900/50 rounded-2xl border border-gray-800" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-row justify-between items-center mb-2" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "flex-1" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-white font-bold text-lg" }, "Greyscale Fader"), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-gray-400 text-xs mt-1" }, "Manually force your screen into Black & White mode to reduce dopamine.")), /* @__PURE__ */ import_react.default.createElement(
-      import_react_native.Switch,
+    return /* @__PURE__ */ react_default.createElement(View, { className: "p-4 bg-gray-900/50 rounded-2xl border border-gray-800" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-center mb-2" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-white font-bold text-lg" }, "Greyscale Fader"), /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-400 text-xs mt-1" }, "Manually force your screen into Black & White mode to reduce dopamine.")), /* @__PURE__ */ react_default.createElement(
+      Switch,
       {
         value: enabled,
         onValueChange: toggleGreyscale,
         trackColor: { false: "#3a3a3c", true: "#ffffff" },
         thumbColor: enabled ? "#000000" : "#f4f3f4"
       }
-    )), /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: "mt-2 flex-row items-center" }, /* @__PURE__ */ import_react.default.createElement(import_react_native.View, { className: `w-2 h-2 rounded-full mr-2 ${enabled ? "bg-green-500" : "bg-gray-600"}` }), /* @__PURE__ */ import_react.default.createElement(import_react_native.Text, { className: "text-gray-500 text-[10px] uppercase font-bold tracking-widest" }, enabled ? "Active" : "Inactive")));
+    )), /* @__PURE__ */ react_default.createElement(View, { className: "mt-2 flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2 ${enabled ? "bg-green-500" : "bg-gray-600"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-500 text-[10px] uppercase font-bold tracking-widest" }, enabled ? "Active" : "Inactive")));
   };
   return __toCommonJS(GreyscaleFader_exports);
 })();

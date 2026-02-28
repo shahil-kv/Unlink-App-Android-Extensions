@@ -9,9 +9,9 @@
     "iconType": "Ionicons",
     "color": "#ffffff",
     "pro": true,
-    "version": "1.0.3",
+    "version": "1.0.4",
     "bundlePath": "bundles/grayscale-2.bundle.js",
-    "lastUpdated": "2026-02-28T15:18:01.569Z",
+    "lastUpdated": "2026-02-28T16:09:44.681Z",
     "folder": "grayscale-2"
   },
   {
@@ -26,7 +26,7 @@
     "pro": false,
     "version": "1.0.0",
     "bundlePath": "bundles/greyscale-fader.bundle.js",
-    "lastUpdated": "2026-02-28T15:18:01.569Z",
+    "lastUpdated": "2026-02-28T16:09:44.682Z",
     "folder": "greyscale-fader"
   },
   {
@@ -41,7 +41,7 @@
     "pro": false,
     "version": "1.0.0",
     "bundlePath": "bundles/testing-extension.bundle.js",
-    "lastUpdated": "2026-02-28T15:18:01.569Z",
+    "lastUpdated": "2026-02-28T16:09:44.682Z",
     "folder": "testing-extension"
   }
 ]
