@@ -5,11 +5,13 @@
   "scripts": {
     "unlink": "node packages/cli/index.js",
     "dev": "npm run unlink -- dev",
-    "init": "npm run unlink -- init"
+    "init": "npm run unlink -- init",
+    "build": "node scripts/build-registry.js && node scripts/bundle-extensions.js"
   },
   "devDependencies": {
     "@types/react": "~19.1.10",
     "@types/react-native": "0.73.0",
+    "esbuild": "^0.20.1",
     "react-native": "^0.84.1",
     "typescript": "^5.0.0"
   }

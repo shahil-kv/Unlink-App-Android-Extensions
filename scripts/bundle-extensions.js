@@ -22,7 +22,6 @@ async function bundleExtensions() {
     if (!fs.existsSync(manifestPath)) continue;
 
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    // Look for the main entry file (usually same name as folder or index)
     const entryFile = fs.readdirSync(extensionPath).find(f => f.endsWith('.tsx') || f.endsWith('.ts'));
 
     if (!entryFile) {
@@ -38,10 +37,12 @@ async function bundleExtensions() {
         entryPoints: [entryPoint],
         bundle: true,
         outfile: outfile,
-        format: 'iife', // Self-executing function
+        format: 'iife',
         globalName: `Extension_${folder.replace(/-/g, '_')}`,
         minify: true,
-        external: ['react', 'react-native'], // These are provided by the App host
+        // React and RN are provided by the App. 
+        // We bundle our SDK shim so it resolves correctly to the host's global.ScreenBreak
+        external: ['react', 'react-native'], 
         loader: {
           '.tsx': 'tsx',
           '.ts': 'ts',
