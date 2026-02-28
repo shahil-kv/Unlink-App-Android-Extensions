@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Switch } from 'react-native';
-import { ScreenBreak } from '../../core/sdk';
+import { ScreenBreak } from '../../sdk';
 
 /**
  * Greyscale Fader Extension

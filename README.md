@@ -1,27 +1,64 @@
-# Screen Break Extensions 🚀
+# 🚀 Unlink App: Android Extensions
 
-Welcome to the official community repository for **Screen Break** extensions! 
+Welcome to the official extensions repository for **Unlink** (Screen Break). Build powerful, focus-enhancing features that help thousands of users reclaim their time.
 
-This repository allows anyone to build and contribute focus-enhancing tools that integrate directly into the Screen Break app. Whether it's a new visual filter, a productivity challenge, or a custom utility, your contribution helps users worldwide reclaim their time.
+This repository allows you to develop, test, and contribute custom UI and logic that runs directly inside the Unlink Android application.
 
-## 📂 Project Structure
+## 🛠️ The Developer Experience
 
-- `extensions/`: Contains all community-contributed extensions.
-  - `greyscale-fader/`: Our first example extension.
-- `sdk/`: Contains the TypeScript definitions for the [ScreenBreak](file:///Users/shahil/Documents/Coding/Personal/Startup/Screen%20Break%20App/core/sdk/index.ts#38-48) SDK.
+We provide a **Zero-Friction** workflow. Use our CLI to scaffold new extensions and test them on your device in real-time with instant live-reload.
 
-## 🛠️ Getting Started
+### 1. Prerequisites
+- Node.js (v18+)
+- [Unlink App](https://play.google.com/store/apps/details?id=com.unlink.app) installed on your Android device.
 
-1. **Fork this repository.**
-2. **Clone your fork** to your local machine.
-3. **Explore the SDK**: Check `sdk/index.d.ts` to see what's possible (usage stats, visual controls, etc.).
-4. **Create your extension**: Copy the `extensions/greyscale-fader` folder as a template.
-5. **Develop & Test**: (See the [Contributing Guide](CONTRIBUTING.md) for local testing instructions).
+### 2. Setup
+Clone this repository and install dependencies:
+```bash
+git clone https://github.com/shahil-kv/Unlink-App-Android-Extensions.git
+cd Unlink-App-Android-Extensions
+npm install
+```
 
-## 🚀 How to Contribute
+### 3. Create a New Extension
+Use the Unlink CLI to scaffold a new extension:
+```bash
+npm run init <extension-name>
+```
+This will create a new folder in `extensions/` with the required manifest and a starter React Native component.
 
-We love PRs! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for the full submission process, UI guidelines, and monetization details.
+### 4. Local Development & Testing
+To test your extension live in the Unlink app:
+1. Start the development server:
+   ```bash
+   npm run dev <extension-name>
+   ```
+2. A **QR Code** will appear in your terminal.
+3. Open the **Unlink App** on your phone.
+4. Navigate to the **Extensions** screen.
+5. **Developer Mode**: Triple-tap the "Marketplace" title to reveal the **Developer Tools**.
+6. Tap **"Scan QR"** and scan the code from your terminal.
+7. Tap **"Load"** to see your extension live!
 
-## ⚖️ License
-By contributing to this repository, you agree to license your code under the MIT License.
+### ⚡ Live Reload
+When the dev server is running, any changes you save to your code (e.g., `Grayscale.tsx`) will trigger an **instant refresh** on your phone. No need to re-scan.
 
+---
+
+## 🏗️ Technical Stack
+- **Framework**: React Native (via Re.Pack/Module Federation).
+- **Styling**: Tailwind CSS (NativeWind).
+- **Language**: TypeScript.
+- **SDK**: Use the `@screenbreak/sdk` to access focus-mode features (Grayscale, Statistics, etc.).
+
+## 🤝 Contributing
+Once your extension is ready:
+1. Ensure your `extension.json` manifest is complete (title, author, icon).
+2. Open a **Pull Request** to this repository.
+3. Our team will review the code for performance and security.
+4. Once approved, your extension will be built and published to the global Unlink Marketplace instantly.
+
+---
+
+## 📜 License
+MIT © [Unlink Team](https://unlink.app)

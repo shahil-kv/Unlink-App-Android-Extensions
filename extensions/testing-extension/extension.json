@@ -1,0 +1,12 @@
+{
+  "id": "testing-extension",
+  "title": "Testing Extension",
+  "author": "your-github-username",
+  "description": "A cool new extension for Unlink",
+  "category": "Utilities",
+  "icon": "star",
+  "iconType": "Ionicons",
+  "color": "#ff006e",
+  "pro": false,
+  "version": "1.0.0"
+}

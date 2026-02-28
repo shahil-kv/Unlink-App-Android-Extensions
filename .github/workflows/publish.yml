@@ -1,0 +1,38 @@
+name: Publish Extensions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'extensions/**'
+      - 'package.json'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Marketplace Registry
+        run: |
+          # This script gathers all manifests and prepares them for the App
+          # In a full Re.Pack setup, this would also run webpack for each extension
+          node scripts/build-registry.js
+
+      - name: Deploy to Marketplace (Mock)
+        run: |
+          echo "🚀 Publishing extensions to Unlink Marketplace..."
+          # Here we would upload the 'dist' folder to a CDN/S3 bucket
+          # For now, we simulate success
+          echo "✅ Done!"
