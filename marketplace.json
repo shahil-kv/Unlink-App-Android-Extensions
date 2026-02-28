@@ -11,7 +11,7 @@
     "pro": true,
     "version": "1.0.0",
     "bundlePath": "bundles/grayscale-2.bundle.js",
-    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "lastUpdated": "2026-02-28T13:59:36.260Z",
     "folder": "grayscale-2"
   },
   {
@@ -26,7 +26,7 @@
     "pro": false,
     "version": "1.0.0",
     "bundlePath": "bundles/greyscale-fader.bundle.js",
-    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "lastUpdated": "2026-02-28T13:59:36.261Z",
     "folder": "greyscale-fader"
   },
   {
@@ -41,7 +41,7 @@
     "pro": false,
     "version": "1.0.0",
     "bundlePath": "bundles/testing-extension.bundle.js",
-    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "lastUpdated": "2026-02-28T13:59:36.261Z",
     "folder": "testing-extension"
   }
 ]
