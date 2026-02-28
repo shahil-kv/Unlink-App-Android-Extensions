@@ -18,7 +18,7 @@ export const IntelligentFocusMode = () => {
     if (value && !hasPermission) {
       Alert.alert(
         "Display Permissions",
-        "This extension requires permission to modify screen saturation through the ScreenBreak Accessibility Service.",
+        "This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",
         [
           { text: "Cancel", style: "cancel", onPress: () => setIsEnabled(false) },
           { 
