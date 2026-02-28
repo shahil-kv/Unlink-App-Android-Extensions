@@ -77,16 +77,17 @@ var Extension_intelligent_focus = (() => {
     const toggleFocusMode = (value) => __async(void 0, null, function* () {
       if (value && !hasPermission) {
         Alert.alert(
-          "Display Permissions",
-          "This extension requires permissioss to modify screen saturation through the ScreenBreak Accessibility Service.",
+          "Accessibility Permission Required",
+          "To filter all apps, ScreenBreak needs Accessibility permission. We only use this to draw a gray filter over your screen without tracking what you type.",
           [
             { text: "Cancel", style: "cancel", onPress: () => setIsEnabled(false) },
             {
-              text: "Enable",
+              text: "Open Settings",
               onPress: () => __async(void 0, null, function* () {
-                setHasPermission(true);
                 setIsEnabled(true);
                 setWasManuallyDisabled(false);
+                yield ScreenBreak.visuals.openAccessibilitySettings();
+                setHasPermission(true);
                 yield ScreenBreak.visuals.setGrayscale(1);
               })
             }
