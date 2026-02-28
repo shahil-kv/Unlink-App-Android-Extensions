@@ -15,7 +15,11 @@ export const IntelligentFocusMode = () => {
   const [wasManuallyDisabled, setWasManuallyDisabled] = useState(false);
 
   const toggleFocusMode = async (value: boolean) => {
-    if (value && !hasPermission) {
+    // Check if the OS actually has the permission enabled
+    const isActuallyEnabled = await (ScreenBreak.visuals as any).hasAccessibilityPermission();
+    
+    if (value && !isActuallyEnabled) {
+      setHasPermission(false);
       Alert.alert(
         "Accessibility Permission Required",
         "To filter all apps, ScreenBreak needs Accessibility permission. We only use this to draw a gray filter over your screen without tracking what you type.",
