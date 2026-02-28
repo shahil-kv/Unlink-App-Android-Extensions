@@ -14,10 +14,35 @@ const globalPlugin = {
     build.onResolve({ filter: /^react-native$/ }, args => ({ path: args.path, namespace: 'global-rn' }));
     
     build.onLoad({ filter: /.*/, namespace: 'global-react' }, () => ({
-      contents: `module.exports = globalThis.React`,
+      contents: `
+        // Explicitly exporting ESM bypasses esbuild's CommonJS __toESM wrapper,
+        // which contains the __copyProps loop that triggers a known Hermes scope capture bug.
+        const R = globalThis.React;
+        export const useState = R.useState;
+        export const useEffect = R.useEffect;
+        export const useMemo = R.useMemo;
+        export const useCallback = R.useCallback;
+        export const useRef = R.useRef;
+        export default R;
+      `,
+      loader: 'js'
     }));
     build.onLoad({ filter: /.*/, namespace: 'global-rn' }, () => ({
-      contents: `module.exports = globalThis.ReactNative`,
+      contents: `
+        const RN = globalThis.ReactNative;
+        export const View = RN.View;
+        export const Text = RN.Text;
+        export const StyleSheet = RN.StyleSheet;
+        export const TouchableOpacity = RN.TouchableOpacity;
+        export const TouchableWithoutFeedback = RN.TouchableWithoutFeedback;
+        export const ScrollView = RN.ScrollView;
+        export const Switch = RN.Switch;
+        export const Alert = RN.Alert;
+        export const Image = RN.Image;
+        export const ActivityIndicator = RN.ActivityIndicator;
+        export default RN;
+      `,
+      loader: 'js'
     }));
   },
 };
