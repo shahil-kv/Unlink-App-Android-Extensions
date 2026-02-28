@@ -1,13 +1,8 @@
 var Extension_intelligent_focus = (() => {
-  var __create = Object.create;
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-  };
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -20,14 +15,6 @@ var Extension_intelligent_focus = (() => {
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
-    // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
-    // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
-  ));
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
   var __async = (__this, __arguments, generator) => {
     return new Promise((resolve, reject) => {
@@ -49,14 +36,6 @@ var Extension_intelligent_focus = (() => {
       step((generator = generator.apply(__this, __arguments)).next());
     });
   };
-
-  // sdk/index.js
-  var require_sdk = __commonJS({
-    "sdk/index.js"(exports, module) {
-      var universalGlobal = typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : {};
-      module.exports = universalGlobal.ScreenBreak;
-    }
-  });
 
   // extensions/grayscale-2/Grayscale2.tsx
   var Grayscale2_exports = {};
@@ -86,8 +65,11 @@ var Extension_intelligent_focus = (() => {
   var Image = RN.Image;
   var ActivityIndicator = RN.ActivityIndicator;
 
+  // global-sdk:../../sdk
+  var universalGlobal = typeof globalThis !== "undefined" ? globalThis : typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : {};
+  var ScreenBreak = universalGlobal.ScreenBreak;
+
   // extensions/grayscale-2/Grayscale2.tsx
-  var import_sdk = __toESM(require_sdk());
   var IntelligentFocusMode = () => {
     const [isEnabled, setIsEnabled] = useState(false);
     const [hasPermission, setHasPermission] = useState(false);
@@ -105,7 +87,7 @@ var Extension_intelligent_focus = (() => {
                 setHasPermission(true);
                 setIsEnabled(true);
                 setWasManuallyDisabled(false);
-                yield import_sdk.ScreenBreak.visuals.setGrayscale(1);
+                yield ScreenBreak.visuals.setGrayscale(1);
               })
             }
           ]
@@ -116,14 +98,14 @@ var Extension_intelligent_focus = (() => {
           setWasManuallyDisabled(true);
         else
           setWasManuallyDisabled(false);
-        yield import_sdk.ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
+        yield ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
       }
     });
     useEffect(() => {
-      const unsubscribe = import_sdk.ScreenBreak.onUpdate((stats) => __async(void 0, null, function* () {
+      const unsubscribe = ScreenBreak.onUpdate((stats) => __async(void 0, null, function* () {
         if (stats.todayTotalMinutes >= 120 && !isEnabled && hasPermission && !wasManuallyDisabled) {
           setIsEnabled(true);
-          yield import_sdk.ScreenBreak.visuals.setGrayscale(1);
+          yield ScreenBreak.visuals.setGrayscale(1);
           Alert.alert("Daily Limit Reached", "Intelligent Focus has been enabled to help you stay focused.");
         }
       }));
