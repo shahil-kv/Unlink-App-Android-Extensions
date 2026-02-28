@@ -5,14 +5,7 @@ var Extension_greyscale_fader = (() => {
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-  }) : x)(function(x) {
-    if (typeof require !== "undefined")
-      return require.apply(this, arguments);
-    throw Error('Dynamic require of "' + x + '" is not supported');
-  });
-  var __commonJS = (cb, mod) => function __require2() {
+  var __commonJS = (cb, mod) => function __require() {
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
@@ -57,6 +50,20 @@ var Extension_greyscale_fader = (() => {
     });
   };
 
+  // global-react:react
+  var require_react = __commonJS({
+    "global-react:react"(exports, module) {
+      module.exports = globalThis.React;
+    }
+  });
+
+  // global-rn:react-native
+  var require_react_native = __commonJS({
+    "global-rn:react-native"(exports, module) {
+      module.exports = globalThis.ReactNative;
+    }
+  });
+
   // sdk/index.js
   var require_sdk = __commonJS({
     "sdk/index.js"(exports, module) {
@@ -70,8 +77,8 @@ var Extension_greyscale_fader = (() => {
   __export(GreyscaleFader_exports, {
     GreyscaleFader: () => GreyscaleFader
   });
-  var import_react = __toESM(__require("react"));
-  var import_react_native = __require("react-native");
+  var import_react = __toESM(require_react());
+  var import_react_native = __toESM(require_react_native());
   var import_sdk = __toESM(require_sdk());
   var GreyscaleFader = () => {
     const [enabled, setEnabled] = import_react.default.useState(false);
