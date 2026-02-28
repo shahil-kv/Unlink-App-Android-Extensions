@@ -10,8 +10,9 @@
     "color": "#ffffff",
     "pro": true,
     "version": "1.0.0",
-    "bundlePath": "bundles/grayscale-2.js",
-    "lastUpdated": "2026-02-28T13:39:43.818Z"
+    "bundlePath": "bundles/grayscale-2.bundle.js",
+    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "folder": "grayscale-2"
   },
   {
     "id": "greyscale-fader",
@@ -24,8 +25,9 @@
     "color": "#8e8e93",
     "pro": false,
     "version": "1.0.0",
-    "bundlePath": "bundles/greyscale-fader.js",
-    "lastUpdated": "2026-02-28T13:39:43.819Z"
+    "bundlePath": "bundles/greyscale-fader.bundle.js",
+    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "folder": "greyscale-fader"
   },
   {
     "id": "testing-extension",
@@ -38,7 +40,8 @@
     "color": "#ff006e",
     "pro": false,
     "version": "1.0.0",
-    "bundlePath": "bundles/testing-extension.js",
-    "lastUpdated": "2026-02-28T13:39:43.819Z"
+    "bundlePath": "bundles/testing-extension.bundle.js",
+    "lastUpdated": "2026-02-28T13:55:57.098Z",
+    "folder": "testing-extension"
   }
 ]
