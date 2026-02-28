@@ -70,37 +70,31 @@ export const IntelligentFocusMode = () => {
   }, [isEnabled, hasPermission, wasManuallyDisabled]);
 
   return (
-    <View className="p-5 bg-zinc-900 rounded-3xl border border-zinc-800">
-      <View className="flex-row justify-between items-start mb-4">
-        <View className="flex-1">
-          <View className="flex-row items-center mb-1">
-            <Text className="text-white font-bold text-xl tracking-tight">Intelligent Focus</Text>
-            <View className="ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700">
-              <Text className="text-[10px] text-zinc-400 font-bold uppercase">PRO</Text>
-            </View>
-          </View>
-          <Text className="text-zinc-500 text-sm">
-            Automatically activates grayscale mode after 120 minutes of daily usage.
+    <View className="pt-2">
+      <View className="flex-row justify-between items-center mb-6 pl-1">
+        <View className="flex-1 pr-6">
+          <Text className="text-gray-300 text-sm leading-5">
+            Automatically applies the grayscale wash-out focus filter after you hit 120 minutes of daily ScreenBreak usage.
           </Text>
         </View>
         <Switch 
           value={isEnabled} 
           onValueChange={toggleFocusMode}
-          trackColor={{ false: '#27272a', true: '#ffffff' }}
-          thumbColor={isEnabled ? '#000000' : '#71717a'}
+          trackColor={{ false: '#27272a', true: '#ff006e' }}
+          thumbColor={isEnabled ? '#ffffff' : '#a1a1aa'}
         />
       </View>
       
-      <View className="flex-row items-center justify-between border-t border-zinc-800 pt-3">
+      <View className="flex-row items-center justify-between border-t border-gray-800/60 pt-4 pb-2">
         <View className="flex-row items-center">
-          <View className={`w-2 h-2 rounded-full mr-2 ${isEnabled ? 'bg-white' : 'bg-zinc-700'}`} />
-          <Text className="text-zinc-600 text-[10px] uppercase font-bold tracking-widest">
+          <View className={`w-2 h-2 rounded-full mr-2.5 shadow-sm ${isEnabled ? 'bg-[#ff006e] shadow-[#ff006e]' : 'bg-gray-600'}`} />
+          <Text className={`text-xs uppercase font-bold tracking-widest ${isEnabled ? 'text-[#ff006e]' : 'text-gray-500'}`}>
             {isEnabled ? 'Filter Active' : 'Monitoring Usage'}
           </Text>
         </View>
         
         {hasPermission && (
-          <Text className="text-zinc-500 text-[10px]">Permission Active</Text>
+          <Text className="text-gray-600 text-[10px] uppercase font-bold tracking-wider">Access Granted</Text>
         )}
       </View>
     </View>
