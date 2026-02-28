@@ -5,8 +5,25 @@ const path = require('path');
 const EXTENSIONS_DIR = path.join(process.cwd(), 'extensions');
 const DIST_DIR = path.join(process.cwd(), 'dist/bundles');
 
+// This plugin replaces 'react' and 'react-native' with direct global references
+// This bypasses the 'require' and '__toESM' overhead which causes the useState bugs.
+const globalPlugin = {
+  name: 'global-plugin',
+  setup(build) {
+    build.onResolve({ filter: /^react$/ }, args => ({ path: args.path, namespace: 'global-react' }));
+    build.onResolve({ filter: /^react-native$/ }, args => ({ path: args.path, namespace: 'global-rn' }));
+    
+    build.onLoad({ filter: /.*/, namespace: 'global-react' }, () => ({
+      contents: `module.exports = globalThis.React`,
+    }));
+    build.onLoad({ filter: /.*/, namespace: 'global-rn' }, () => ({
+      contents: `module.exports = globalThis.ReactNative`,
+    }));
+  },
+};
+
 async function bundleExtensions() {
-  console.log('📦 Bundling extensions for Remote Delivery...');
+  console.log('📦 Bundling extensions for Remote Delivery (Global Mode)...');
 
   if (!fs.existsSync(DIST_DIR)) {
     fs.mkdirSync(DIST_DIR, { recursive: true });
@@ -46,9 +63,9 @@ async function bundleExtensions() {
         outfile: outfile,
         format: 'iife',
         globalName: `Extension_${extensionId.replace(/-/g, '_')}`,
-        minify: false, // Disabled for debugging
+        minify: false, 
         target: ['es2015'], 
-        external: ['react', 'react-native'], 
+        plugins: [globalPlugin],
         loader: {
           '.tsx': 'tsx',
           '.ts': 'ts',
