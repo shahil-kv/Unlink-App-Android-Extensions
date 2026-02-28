@@ -76,15 +76,15 @@ var Extension_greyscale_fader = (() => {
       setEnabled(value);
       yield ScreenBreak.visuals.setGrayscale(value ? 1 : 0);
     });
-    return /* @__PURE__ */ react_default.createElement(View, { className: "p-4 bg-gray-900/50 rounded-2xl border border-gray-800" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-center mb-2" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-white font-bold text-lg" }, "Greyscale Fader"), /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-400 text-xs mt-1" }, "Manually force your screen into Black & White mode to reduce dopamine.")), /* @__PURE__ */ react_default.createElement(
+    return /* @__PURE__ */ react_default.createElement(View, { className: "pt-2" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-center mb-6 pl-1" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1 pr-6" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-300 text-sm leading-5" }, "Manually force your screen into a wash-out tint mode to reduce dopamine.")), /* @__PURE__ */ react_default.createElement(
       Switch,
       {
         value: enabled,
         onValueChange: toggleGreyscale,
-        trackColor: { false: "#3a3a3c", true: "#ffffff" },
-        thumbColor: enabled ? "#000000" : "#f4f3f4"
+        trackColor: { false: "#27272a", true: "#ff006e" },
+        thumbColor: enabled ? "#ffffff" : "#a1a1aa"
       }
-    )), /* @__PURE__ */ react_default.createElement(View, { className: "mt-2 flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2 ${enabled ? "bg-green-500" : "bg-gray-600"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-500 text-[10px] uppercase font-bold tracking-widest" }, enabled ? "Active" : "Inactive")));
+    )), /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center border-t border-gray-800/60 pt-4 pb-2" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2.5 shadow-sm ${enabled ? "bg-[#ff006e] shadow-[#ff006e]" : "bg-gray-600"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: `text-xs uppercase font-bold tracking-widest ${enabled ? "text-[#ff006e]" : "text-gray-500"}` }, enabled ? "Active" : "Inactive")));
   };
   return __toCommonJS(GreyscaleFader_exports);
 })();

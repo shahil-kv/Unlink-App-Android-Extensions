@@ -114,15 +114,15 @@ var Extension_intelligent_focus = (() => {
       }));
       return () => unsubscribe();
     }, [isEnabled, hasPermission, wasManuallyDisabled]);
-    return /* @__PURE__ */ react_default.createElement(View, { className: "p-5 bg-zinc-900 rounded-3xl border border-zinc-800" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-start mb-4" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center mb-1" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-white font-bold text-xl tracking-tight" }, "Intelligent Focus"), /* @__PURE__ */ react_default.createElement(View, { className: "ml-2 px-2 py-0.5 bg-zinc-800 rounded-md border border-zinc-700" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-[10px] text-zinc-400 font-bold uppercase" }, "PRO"))), /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-500 text-sm" }, "Automatically activates grayscale mode after 120 minutes of daily usage.")), /* @__PURE__ */ react_default.createElement(
+    return /* @__PURE__ */ react_default.createElement(View, { className: "pt-2" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row justify-between items-center mb-6 pl-1" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-1 pr-6" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-300 text-sm leading-5" }, "Automatically applies the grayscale wash-out focus filter after you hit 120 minutes of daily ScreenBreak usage.")), /* @__PURE__ */ react_default.createElement(
       Switch,
       {
         value: isEnabled,
         onValueChange: toggleFocusMode,
-        trackColor: { false: "#27272a", true: "#ffffff" },
-        thumbColor: isEnabled ? "#000000" : "#71717a"
+        trackColor: { false: "#27272a", true: "#ff006e" },
+        thumbColor: isEnabled ? "#ffffff" : "#a1a1aa"
       }
-    )), /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center justify-between border-t border-zinc-800 pt-3" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2 ${isEnabled ? "bg-white" : "bg-zinc-700"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-600 text-[10px] uppercase font-bold tracking-widest" }, isEnabled ? "Filter Active" : "Monitoring Usage")), hasPermission && /* @__PURE__ */ react_default.createElement(Text, { className: "text-zinc-500 text-[10px]" }, "Permission Active")));
+    )), /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center justify-between border-t border-gray-800/60 pt-4 pb-2" }, /* @__PURE__ */ react_default.createElement(View, { className: "flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: `w-2 h-2 rounded-full mr-2.5 shadow-sm ${isEnabled ? "bg-[#ff006e] shadow-[#ff006e]" : "bg-gray-600"}` }), /* @__PURE__ */ react_default.createElement(Text, { className: `text-xs uppercase font-bold tracking-widest ${isEnabled ? "text-[#ff006e]" : "text-gray-500"}` }, isEnabled ? "Filter Active" : "Monitoring Usage")), hasPermission && /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-600 text-[10px] uppercase font-bold tracking-wider" }, "Access Granted")));
   };
   return __toCommonJS(Grayscale2_exports);
 })();

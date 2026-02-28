@@ -47,7 +47,7 @@ var Extension_testing_extension = (() => {
 
   // extensions/testing-extension/testing-extension.tsx
   var TestingExtension = () => {
-    return /* @__PURE__ */ react_default.createElement(View, { className: "p-4 bg-zinc-900 rounded-2xl" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-white" }, "Hello from testing-extension!"));
+    return /* @__PURE__ */ react_default.createElement(View, { className: "p-4 bg-transparent border-t border-gray-800/60 mt-2" }, /* @__PURE__ */ react_default.createElement(Text, { className: "text-gray-300 font-medium" }, "Hello there! The developer testing extension has been successfully loaded over the air."), /* @__PURE__ */ react_default.createElement(View, { className: "mt-4 flex-row items-center" }, /* @__PURE__ */ react_default.createElement(View, { className: "w-2 h-2 rounded-full mr-2.5 shadow-sm bg-[#ff006e] shadow-[#ff006e]" }), /* @__PURE__ */ react_default.createElement(Text, { className: "text-[#ff006e] text-[10px] uppercase font-bold tracking-widest" }, "Active Bundle Connection")));
   };
   return __toCommonJS(testing_extension_exports);
 })();
